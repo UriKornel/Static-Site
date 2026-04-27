@@ -1,5 +1,5 @@
 from markdown_to_blocks import markdown_to_blocks
-from blocktype import BlockType, block_to_block_type
+from markdown_to_blocks import BlockType, block_to_block_type
 from parentnode import ParentNode
 from text_to_textnodes import text_to_textnodes
 from textnode import text_node_to_html_node, TextNode, TextType
@@ -36,10 +36,10 @@ def markdown_to_html_node(markdown):
             code = TextNode(block[4:-3], TextType.TEXT)
             html_code = text_node_to_html_node(code)
             nodes.append(ParentNode("pre", [ParentNode("code", [html_code])]))
-        elif block_type == BlockType.UNORDERED_LIST:
+        elif block_type == BlockType.ULIST:
             lines = block.split("\n")
             nodes.append(ParentNode("ul", [ParentNode("li", list_item) for list_item in lines_to_unordered_list_children(lines)]))
-        elif block_type == BlockType.ORDERED_LIST:
+        elif block_type == BlockType.OLIST:
             lines = block.split("\n")
             nodes.append(ParentNode("ol", [ParentNode("li", list_item) for list_item in lines_to_ordered_list_children(lines)]))
         elif block_type == BlockType.QUOTE:
