@@ -2,6 +2,7 @@
 # from htmlnode import HTMLNode
 # from test_split_nodes_delimeter import split_nodes_delimiter
 from cpy import cpy
+from generate_page import generate_page
 
 
 def main():
@@ -31,5 +32,10 @@ def main():
     src = "static/"
     dest = "public/"
     cpy(src, dest)
+
+    from_path = "content/index.md"
+    template_path = "template.html"
+    dest_path = "public/index.html"
+    generate_page(from_path, template_path, dest_path)
 
 main()
