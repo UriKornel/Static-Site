@@ -18,12 +18,9 @@ def generate_page(from_path, template_path, dest_path):
     template = template.replace("{{ Title }}", title)
     template = template.replace("{{ Content }}", html_text)
 
-    dirs = dest_path.split("/")
-    dir = ""
-    for i in range(len(dirs)-1):
-        dir = os.path.join(dir, dirs[i])
-        if not os.path.exists(dir):
-            os.mkdir(dir)
+    # /home/uri/Workspace/Static-Site/public/contact
+    # /home/uri/Workspace/Static-Site/public/blog/tom
+    os.makedirs(dest_path, exist_ok=True)
 
-    with open(dest_path, 'w') as f:
+    with open(os.path.join(dest_path, "index.html"), 'w') as f:
         f.write(template)
